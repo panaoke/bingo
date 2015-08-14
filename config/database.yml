@@ -1,0 +1,16 @@
+default: &default
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
+  database: bingo_development
+
+test:
+  <<: *default
+  database: bingo_test
+
+production:
+  <<: *default
+  database: bingo_production

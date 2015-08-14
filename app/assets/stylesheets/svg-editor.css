@@ -1,0 +1,9 @@
+svg {
+    border: 1px solid #777;
+}
+svg * {
+    cursor: move;
+}
+svg *:hover {
+    border: 1px solid #777;
+}

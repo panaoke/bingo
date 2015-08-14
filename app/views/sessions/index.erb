@@ -1,0 +1,52 @@
+<h5> welcome back</h5>
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <text id="text" transform="translate(95,88)" fill="red" font-size="12px">I love SVG</text>
+</svg>
+
+
+<style>
+  svg {
+      border: 1px solid #777;
+      width: 300px;
+      height: 200px;
+  }
+  .attr-item {
+      padding: 10px;
+  }
+  .attr-item label {
+      display: inline-block;
+      width: 100px;
+      margin-right: 10px;
+  }
+</style>
+<script>
+
+    var editor = new SvgEditor('svg');
+
+    $('text').click();
+//        $('.brick').udraggable({})
+    $('text').udraggable({
+        containment: 'parent',
+        positionElement: function ($el, dragging, x, y) {
+            if (dragging) {
+                $el.css({
+                    left: 'auto',
+                    top: 'auto',
+                });
+//                $el.attr('x', x);
+//                $el.attr('y', y);
+//                $el.trigger('change');
+                $el.attr('transform', 'translate(' + x + ',' + y + ')')
+                $el.trigger('change');
+            }
+            else {
+                $el.css({
+                    left: x,
+                    top: y,
+                    transform: 'none'
+                });
+            }
+        }
+    });
+
+</script>
