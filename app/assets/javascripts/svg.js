@@ -6,6 +6,7 @@ EditorsInputs = function() {
         //'textPath': ['text', 'transformX', 'transformY', 'fontSize', 'fontFamily'],
         'text': ['text'],
         'textPath': ['text'],
+        'textpath': ['text'],
         'tspan': ['text']
     };
 
@@ -215,6 +216,7 @@ SvgEditor = function(dom) {
     self.$editor = $('<div class="svg-editor"></div>');
 
     self.$dom.append(self.$panel).append(self.$editor);
+    self.imageUrl = "";
     //self.currentTargetId;
 
 
@@ -244,19 +246,22 @@ SvgEditor = function(dom) {
     };
 
     self.load = function(url) {
-        var a = $('<a></a>');
-        a.attr('href', url);
-        a[0].host = location.host;
-        a[0].port = location.port || 80;
-        $.ajax({
-            type: 'GET',
-            url: a[0].href,
-            success: function(data) {
-                var $svg = $(data.children);
-                self.$panel.append($svg);
-                self.refreshPanel();
-            }
-        });
+        if(self.imageUrl != url) {
+            var a = $('<a></a>');
+            a.attr('href', url);
+            a[0].host = location.host;
+            a[0].port = location.port || 80;
+            $.ajax({
+                type: 'GET',
+                url: a[0].href,
+                success: function(data) {
+                    var $svg = $(data.children);
+                    self.$panel.html("")
+                    self.$panel.append($svg);
+                    self.refreshPanel();
+                }
+            });
+        }
     };
 
     self.rebuildEditor = function(dom, inputs) {

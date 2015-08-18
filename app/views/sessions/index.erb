@@ -1,29 +1,50 @@
 <h5> welcome back</h5>
+<div class="image-list">
+  <h5>模板图片</h5>
+
+  <div>
+    <img src="/assets/example.svg" class="svg-image">
+    <img src="/assets/example2.svg" class="svg-image">
+    <img src="/assets/gu-logo-black.svg" class="svg-image">
+  </div>
+</div>
+
 <div class="my-svg">
 
 </div>
 
 <style>
-  svg {
-      border: 1px solid #777;
-      width: 300px;
-      height: 200px;
-  }
-  .attr-item {
-      padding: 10px;
-  }
-  .attr-item label {
-      display: inline-block;
-      width: 100px;
-      margin-right: 10px;
-  }
+    img.svg-image {
+        width: 100px;
+    }
+
+    svg {
+        border: 1px solid #777;
+        width: 300px;
+        height: 200px;
+    }
+
+    .svg-editor .editor-item {
+        padding: 10px;
+    }
+
+    .attr-item label {
+        display: inline-block;
+        width: 100px;
+        margin-right: 10px;
+    }
+    .svg-panel,  .svg-editor {
+        width: 50%;
+        float: left;
+    }
 </style>
 <script>
-
-//    var url = "assets/gu-logo-black.svg";
-    var url = "assets/example2.svg";
     var svg = new SvgEditor('.my-svg');
-    svg.load(url);
-
+    $('.svg-image').on('click', function (e) {
+        e.stopPropagation();
+        var $dom = $(e.target);
+        svg.load($dom.attr('src'));
+    });
+    $('.svg-image:first').click();
 
 </script>
