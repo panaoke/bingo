@@ -235,7 +235,7 @@ SvgEditor = function(dom) {
 
     self.refreshPanel = function() {
         self.$editor.html('');
-        $.each(self.$panel.find('svg').find('text, textPath, tspan'), function(i, dom) {
+        $.each(self.$panel.find('svg').find('text, textPath, tspan, textpath'), function(i, dom) {
             var $dom = $(dom);
             if(EditorsInputs.elementInputs[$dom[0].tagName] != undefined ) {
                 if($dom.children().length == 0) {
@@ -247,6 +247,7 @@ SvgEditor = function(dom) {
 
     self.load = function(url) {
         if(self.imageUrl != url) {
+            self.imageUrl = url;
             var a = $('<a></a>');
             a.attr('href', url);
             a[0].host = location.host;
@@ -255,8 +256,8 @@ SvgEditor = function(dom) {
                 type: 'GET',
                 url: a[0].href,
                 success: function(data) {
-                    var $svg = $(data.children);
-                    self.$panel.html("")
+                    var $svg = $(data.documentElement);
+                    self.$panel.html("");
                     self.$panel.append($svg);
                     self.refreshPanel();
                 }
