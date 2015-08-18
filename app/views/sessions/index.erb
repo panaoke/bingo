@@ -1,8 +1,7 @@
 <h5> welcome back</h5>
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-  <text id="text" transform="translate(95,88)" fill="red" font-size="12px">I love SVG</text>
-</svg>
+<div class="my-svg">
 
+</div>
 
 <style>
   svg {
@@ -21,32 +20,10 @@
 </style>
 <script>
 
-    var editor = new SvgEditor('svg');
+//    var url = "assets/gu-logo-black.svg";
+    var url = "assets/example2.svg";
+    var svg = new SvgEditor('.my-svg');
+    svg.load(url);
 
-    $('text').click();
-//        $('.brick').udraggable({})
-    $('text').udraggable({
-        containment: 'parent',
-        positionElement: function ($el, dragging, x, y) {
-            if (dragging) {
-                $el.css({
-                    left: 'auto',
-                    top: 'auto',
-                });
-//                $el.attr('x', x);
-//                $el.attr('y', y);
-//                $el.trigger('change');
-                $el.attr('transform', 'translate(' + x + ',' + y + ')')
-                $el.trigger('change');
-            }
-            else {
-                $el.css({
-                    left: x,
-                    top: y,
-                    transform: 'none'
-                });
-            }
-        }
-    });
 
 </script>

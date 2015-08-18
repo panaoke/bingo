@@ -1,11 +1,13 @@
-
 EditorsInputs = function() {
     var self = this;
 
     self.elementInputs = {
-        'text': ['text', 'transformX', 'transformY', 'fontSize', 'fontFamily']
+        //'text': ['text', 'transformX', 'transformY', 'fontSize', 'fontFamily'],
+        //'textPath': ['text', 'transformX', 'transformY', 'fontSize', 'fontFamily'],
+        'text': ['text'],
+        'textPath': ['text'],
+        'tspan': ['text']
     };
-
 
     var fontSizes = {
         '': '默认',
@@ -196,29 +198,69 @@ EditorsInputs = function() {
     return self;
 }();
 
+SvgConfig = function() {
+    var self = this;
+    self.host = "";
+    self.port = "80";
+
+    return self;
+}();
+
 SvgEditor = function(dom) {
     var self = this;
 
     self.$dom = $(dom);
 
+    self.$panel = $('<div class="svg-panel"></div>');
     self.$editor = $('<div class="svg-editor"></div>');
-    self.$dom.after(self.$editor);
-    self.currentTargetId;
+
+    self.$dom.append(self.$panel).append(self.$editor);
+    //self.currentTargetId;
 
 
-    self.$dom.find('*').on('click', function(e) {
-        var dom = $(e.target);
-        if(self.currentTargetId != dom.attr('id')) {
-            self.currentTargetId = dom.attr('id');
-            if(EditorsInputs.elementInputs[dom[0].tagName] != undefined ) {
-                self.rebuildEditor(dom, EditorsInputs.elementInputs[dom[0].tagName])
+    //self.$dom.find('*').on('click', function(e) {
+    //    var dom = $(e.target);
+    //    console.log(dom[0].tagName);
+    //    if(self.currentTargetId != dom.attr('id')) {
+    //        self.currentTargetId = dom.attr('id');
+    //        if(EditorsInputs.elementInputs[dom[0].tagName] != undefined ) {
+    //            self.rebuildEditor(dom, EditorsInputs.elementInputs[dom[0].tagName])
+    //        }
+    //    }
+    //
+    //});
+
+
+    self.refreshPanel = function() {
+        self.$editor.html('');
+        $.each(self.$panel.find('svg').find('text, textPath, tspan'), function(i, dom) {
+            var $dom = $(dom);
+            if(EditorsInputs.elementInputs[$dom[0].tagName] != undefined ) {
+                if($dom.children().length == 0) {
+                    self.rebuildEditor($dom, EditorsInputs.elementInputs[$dom[0].tagName])
+                }
             }
-        }
+        });
+    };
 
-    })
+    self.load = function(url) {
+        var a = $('<a></a>');
+        a.attr('href', url);
+        a[0].host = location.host;
+        a[0].port = location.port || 80;
+        $.ajax({
+            type: 'GET',
+            url: a[0].href,
+            success: function(data) {
+                var $svg = $(data.children);
+                self.$panel.append($svg);
+                self.refreshPanel();
+            }
+        });
+    };
 
     self.rebuildEditor = function(dom, inputs) {
-        self.$editor.html('');
+        var $domPanel = $('<div class="editor-item"></div>');
 
         $.each(inputs, function(i, inputName) {
             var input = EditorsInputs[inputName];
@@ -226,7 +268,8 @@ SvgEditor = function(dom) {
             var $label = $("<label>"+input.label+"</label>");
             var $input = input.init(dom);
             $div.append($label).append($input);
-            self.$editor.append($div);
+            $domPanel.append($div);
+            self.$editor.append($domPanel);
 
             $input.on('change', function(e) {
                 input.changeCallback(dom, $input.val());

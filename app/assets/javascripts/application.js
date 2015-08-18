@@ -14,6 +14,5 @@
 //= require jquery_ujs
 //= require jquery.event.ue.js
 //= require jquery.udraggable.js
-//= require gridly
 //= require svg.js
 //= require_tree .
