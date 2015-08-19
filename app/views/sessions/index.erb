@@ -1,73 +1,77 @@
 <h5> welcome back</h5>
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-  <rect width="300" height="100" fill="white" stroke-width="1" stroke="#ff0000"/>
-  <image xlink:href="http://127.0.0.1:3000/assets/star.png"  width="96" height="96" />
-  <text id="text" transform="translate(0,30)" fill="#ff0000" font-size="12px">I love SVG</text>
+<div class="image-list">
+  <h5>模板图片</h5>
 
-</svg>
+  <div>
+    <img src="/assets/example.svg" class="svg-image">
+    <img src="/assets/example2.svg" class="svg-image">
+    <img src="/assets/gu-logo-black.svg" class="svg-image">
+  </div>
+</div>
 
+<div class="my-svg">
+
+</div>
 
 <style>
-  svg {
-      border: 1px solid #777;
-      width: 300px;
-      height: 200px;
-  }
-  .attr-item {
-      padding: 10px;
-  }
-  .attr-item label {
-      display: inline-block;
-      width: 100px;
-      margin-right: 10px;
-  }
-  /*svg * {*/
-      /*position: absolute;*/
-      /*top: auto !important;*/
-      /*left: auto !important;*/
-      /*right: auto;*/
-      /*bottom: auto;*/
-      /*transform: none;*/
-  /*}*/
+    img.svg-image {
+        width: 100px;
+    }
+
+    svg {
+        border: 1px solid #777;
+        width: 300px;
+        height: 200px;
+    }
+
+    .svg-editor .editor-item {
+        padding: 10px;
+    }
+
+    .attr-item label {
+        display: inline-block;
+        width: 100px;
+        margin-right: 10px;
+    }
+    .svg-panel,  .svg-editor {
+        width: 50%;
+        float: left;
+    }
 </style>
 <script>
-  $(function() {
+    $(function() {
+    var svg = new SvgEditor('.my-svg');
+    $('.svg-image').on('click', function (e) {
+        e.stopPropagation();
+        var $dom = $(e.target);
+        svg.load($dom.attr('src'));
+    });
+    $('.svg-image:first').click();
 
-      var editor = new SvgEditor('svg');
-//    $('svg *').udraggable({
-//        containment: 'parent',
-//        getStartPosition: true,
-//        positionElement: function() {
-//
-//        }
-//    });
-
-      $('text').click();
-//        $('.brick').udraggable({})
-      $('svg *').udraggable({
-          containment: 'parent',
-          positionElement: function ($el, dragging, x, y) {
-              if (dragging) {
-                  $el.css({
-                      left: 'auto',
-                      top: 'auto',
-                      transform: 'translate(' + x + 'px,' + y + 'px)'
-                  });
+    $('svg *').udraggable({
+        containment: 'parent',
+        positionElement: function ($el, dragging, x, y) {
+            if (dragging) {
+                $el.css({
+                    left: 'auto',
+                    top: 'auto',
+                    transform: 'translate(' + x + 'px,' + y + 'px)'
+                });
 //                $el.trigger('change');
 //                console.log('x :'+x+'; y:'+y);
 //                console.log('left :'+($el.offset().left)+'; top:'+($el.offset().top+y));
-                  $el.attr('transform', 'translate(' + x + ',' + y + ')');
+                $el.attr('transform', 'translate(' + x + ',' + y + ')');
 //                $el.attr('transform', 'translate(' + ($el.offset().left+x) + ',' + ($el.offset().left+y) + ')');
                 $el.trigger('change');
-              }
-              else {
-                  $el.css({
-                      left: x,
-                      top: y,
-                      transform: 'none'
-                  });
-                  console.log("asda")
-              }
+            }
+            else {
+                $el.css({
+                    left: x,
+                    top: y,
+                    transform: 'none'
+                });
+                console.log("asda")
+            }
 
 //            if (dragging) {
 //                $el.css({
@@ -83,19 +87,18 @@
 //                    transform: 'none'
 //                });
 //            }
-          }
+        }
 
-      });
+    });
 
-      $('svg *').css({left: 'auto', top: 'auto'})
+    $('svg *').css({left: 'auto', top: 'auto'})
 
-      (function () {
-          var e = document.createElement('script');
-          e.setAttribute('src', 'https://nytimes.github.io/svg-crowbar/svg-crowbar.js');
-          document.body.appendChild(e);
-      })()
+    (function () {
+        var e = document.createElement('script');
+        e.setAttribute('src', 'https://nytimes.github.io/svg-crowbar/svg-crowbar.js');
+        document.body.appendChild(e);
+    })()
 
-  }, jQuery)
-
+    }, jQuery)
 
 </script>

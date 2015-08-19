@@ -3,9 +3,7 @@ EditorsInputs = function() {
     var self = this;
 
     self.elementInputs = {
-        'text': ['text', 'transformX', 'transformY', 'fontSize', 'fontFamily'],
-        'image': ['width', 'height', 'transformX', 'transformY'],
-        'rect': ['width', 'height', 'transformX', 'transformY', 'strokeWidth', 'stroke']
+        'text': ['text', 'transformX', 'transformY', 'fontSize', 'fontFamily']
     };
 
 
@@ -65,18 +63,6 @@ EditorsInputs = function() {
     };
     var fontFamilies = {
         '': '默认',
-        "SimSun":"宋体",
-        "SimHei":"黑体",
-        "Microsoft YaHei":"微软雅黑",
-        "Microsoft JhengHei":"微软正黑体",
-        "NSimSun":"新宋体",
-        "PMingLiU":"新细明体",
-        "MingLiU":"细明体",
-        "DFKai-SB":"标楷体",
-        "FangSong":"仿宋",
-        "KaiTi":"楷体",
-        "FangSong_GB2312":"仿宋_GB2312",
-        "KaiTi_GB2312":"楷体_GB2312",
         "Serif":"Serif",
         "Sans-serif":"Sans-serif",
         "Monospace":"Monospace",
@@ -122,9 +108,6 @@ EditorsInputs = function() {
         changeCallback: function(dom, value) {
             if($.trim(value) != '') {
                 var oldValue = $.trim($(dom).attr('transform'));
-                if(!/translate\(\d+\,\d+\)/.test(oldValue)) {
-                    oldValue = "translate(0,0)"
-                }
                 $(dom).attr('transform', oldValue.replace(/translate\(\d+\,/, 'translate('+Number(value)+ ','));
             }
 
@@ -149,9 +132,6 @@ EditorsInputs = function() {
         changeCallback: function(dom, value) {
             if($.trim(value) != '') {
                 var oldValue = $.trim($(dom).attr('transform'));
-                if(!/translate\(\d+\,\d+\)/.test(oldValue)) {
-                    oldValue = "translate(0,0)";
-                }
                 $(dom).attr('transform', oldValue.replace(/\,\d+\)/, ',' + Number(value) + ')'));
             }
         },
@@ -209,56 +189,6 @@ EditorsInputs = function() {
             $(dom).attr('font-family', value);
         }
     };
-
-    self.width = {
-        label: '宽度',
-        init: function(dom) {
-            var value = $(dom).attr('width');
-            var $input = $("<input type='number' >");
-            return $input.val(value);
-        },
-        changeCallback: function(dom, value) {
-            $(dom).attr('width', value);
-        }
-    };
-
-    self.height = {
-        label: '高度',
-        init: function(dom) {
-            var value = $(dom).attr('height');
-            var $input = $("<input type='number' >");
-            return $input.val(value);
-        },
-        changeCallback: function(dom, value) {
-            $(dom).attr('height', value);
-        }
-    };
-
-
-    self.strokeWidth = {
-        label: '边款宽度',
-        init: function(dom) {
-            var value = $(dom).attr('stroke-width');
-            var $input = $("<input type='number'>");
-            return $input.val(value);
-        },
-        changeCallback: function(dom, value) {
-            $(dom).attr('stroke-width', value);
-        }
-    };
-
-    self.stroke = {
-        label: '边款颜色',
-        init: function(dom) {
-            var value = $(dom).attr('stroke');
-            var $input = $("<input type='color'>");
-            return $input.val(value);
-        },
-        changeCallback: function(dom, value) {
-            $(dom).attr('stroke', value);
-        }
-    };
-
 
 
 
