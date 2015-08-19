@@ -1,6 +1,9 @@
 <h5> welcome back</h5>
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-  <text id="text" transform="translate(95,88)" fill="red" font-size="12px">I love SVG</text>
+  <rect width="300" height="100" fill="white" stroke-width="1" stroke="#ff0000"/>
+  <image xlink:href="http://127.0.0.1:3000/assets/star.png"  width="96" height="96" />
+  <text id="text" transform="translate(0,30)" fill="#ff0000" font-size="12px">I love SVG</text>
+
 </svg>
 
 
@@ -18,35 +21,81 @@
       width: 100px;
       margin-right: 10px;
   }
+  /*svg * {*/
+      /*position: absolute;*/
+      /*top: auto !important;*/
+      /*left: auto !important;*/
+      /*right: auto;*/
+      /*bottom: auto;*/
+      /*transform: none;*/
+  /*}*/
 </style>
 <script>
+  $(function() {
 
-    var editor = new SvgEditor('svg');
+      var editor = new SvgEditor('svg');
+//    $('svg *').udraggable({
+//        containment: 'parent',
+//        getStartPosition: true,
+//        positionElement: function() {
+//
+//        }
+//    });
 
-    $('text').click();
+      $('text').click();
 //        $('.brick').udraggable({})
-    $('text').udraggable({
-        containment: 'parent',
-        positionElement: function ($el, dragging, x, y) {
-            if (dragging) {
-                $el.css({
-                    left: 'auto',
-                    top: 'auto',
-                });
-//                $el.attr('x', x);
-//                $el.attr('y', y);
+      $('svg *').udraggable({
+          containment: 'parent',
+          positionElement: function ($el, dragging, x, y) {
+              if (dragging) {
+                  $el.css({
+                      left: 'auto',
+                      top: 'auto',
+                      transform: 'translate(' + x + 'px,' + y + 'px)'
+                  });
 //                $el.trigger('change');
-                $el.attr('transform', 'translate(' + x + ',' + y + ')')
+//                console.log('x :'+x+'; y:'+y);
+//                console.log('left :'+($el.offset().left)+'; top:'+($el.offset().top+y));
+                  $el.attr('transform', 'translate(' + x + ',' + y + ')');
+//                $el.attr('transform', 'translate(' + ($el.offset().left+x) + ',' + ($el.offset().left+y) + ')');
                 $el.trigger('change');
-            }
-            else {
-                $el.css({
-                    left: x,
-                    top: y,
-                    transform: 'none'
-                });
-            }
-        }
-    });
+              }
+              else {
+                  $el.css({
+                      left: x,
+                      top: y,
+                      transform: 'none'
+                  });
+                  console.log("asda")
+              }
+
+//            if (dragging) {
+//                $el.css({
+//                    left: 'auto',
+//                    top: 'auto',
+//                    transform: 'translate(' + x + 'px,' + y + 'px)'
+//                });
+//            }
+//            else {
+//                $el.css({
+//                    left: x,
+//                    top: y,
+//                    transform: 'none'
+//                });
+//            }
+          }
+
+      });
+
+      $('svg *').css({left: 'auto', top: 'auto'})
+
+      (function () {
+          var e = document.createElement('script');
+          e.setAttribute('src', 'https://nytimes.github.io/svg-crowbar/svg-crowbar.js');
+          document.body.appendChild(e);
+      })()
+
+  }, jQuery)
+
 
 </script>
