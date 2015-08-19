@@ -241,28 +241,28 @@ SvgDownload = (function () {
         } else if (window.document.title) {
             filename = window.document.title.replace(/[^a-z0-9]/gi, '-').toLowerCase();
         }
-        var url = "data:text/xml;charset=utf-8,"+encodeURI(source.source);
+        //var url = "data:text/xml;charset=utf-8,"+encodeURI(source.source);
 
         //source.source.forEach(function(infoArray, index){
         //    dataString = infoArray.join(",");
         //    csvContent += index < data.length ? dataString+ "\n" : dataString;
         //
         //});
-        //var url = window.URL.createObjectURL(new Blob(source.source, {"type": "text\/xml"}));
+        var url = window.URL.createObjectURL(new Blob(source.source, {"type": "text\/xml"}));
         //console.log(url);
-        Downer({'001.svg': url});
+        //Downer({'001.svg': url});
         //window.downloadFile(url);
-        //var a = document.createElement("a");
-        //document.body.appendChild(a);
-        //a.setAttribute("class", "svg-crowbar");
-        //a.setAttribute("download", filename + ".svg");
-        //a.setAttribute("href", url);
-        //a.style["display"] = "none";
-        //a.click();
-        //
-        //setTimeout(function () {
-        //    window.URL.revokeObjectURL(url);
-        //}, 10);
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+        a.setAttribute("class", "svg-crowbar");
+        a.setAttribute("download", filename + ".svg");
+        a.setAttribute("href", url);
+        a.style["display"] = "none";
+        a.click();
+
+        setTimeout(function () {
+            window.URL.revokeObjectURL(url);
+        }, 10);
     }
 
     function getStyles(doc) {
