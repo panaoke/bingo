@@ -40,14 +40,14 @@
 </style>
 <script>
     $(function() {
-    var svg = new SvgEditor('.my-svg');
-    $('.svg-image').on('click', function (e) {
-        e.stopPropagation();
-        var $dom = $(e.target);
-        svg.load($dom.attr('src'));
-    });
+        var svg = new SvgEditor('.my-svg');
+        $('.svg-image').on('click', function (e) {
+            e.stopPropagation();
+            var $dom = $(e.target);
+            svg.load($dom.attr('src'));
+        });
 
-    $('.svg-image:first').click();
+        $('.svg-image:first').click();
 
     }, jQuery)
 

@@ -19,10 +19,11 @@
 		id:					integer
 		name: 				string			# 名称
 		image_url: 			string			# 图片地址
-		shape_type:			enum(string)	# {rectangle: '长方', round: 圆, other: 其他}
+		shape_type:			enum(string)	# {rectangle: '长方', round: '圆', other: '其他'}
 		size_type:			enum(string)	# 尺寸类型{ 40_40: '40x40', '50_50': '50x50' }
 		category_id:		integer			# 品类id
 		active:				boolean			# 是否激活, 激活后可用, default: true
+		price:				decimal			# 价格
 		
 		
 	> 1.3 品类( category ) 模板的分类

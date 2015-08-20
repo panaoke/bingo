@@ -1,0 +1,17 @@
+{
+"SimHei": "黑体",
+ "SimSun": "宋体",
+ "NSimSun": "新宋体",
+ "FangSong": "仿宋",
+ "KaiTi": "楷体",
+ "FangSong_GB2312": "仿宋_GB2312",
+ "KaiTi_GB2312": "楷体_GB2312",
+ "Microsoft YaHei": "微软雅黑体",
+ "LiSu": "隶书",
+ "YouYuan": "幼圆",
+ "STXihei": "华文细黑",
+ "STKaiti": "华文楷体",
+ "STSong": "华文宋体",
+ "STZhongsong": "华文中宋",
+ "STFangsong": "华文仿宋"
+ }

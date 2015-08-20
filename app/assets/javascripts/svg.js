@@ -10,7 +10,7 @@ SvgDownload = (function () {
         xmlns: "http://www.w3.org/2000/xmlns/",
         xlink: "http://www.w3.org/1999/xlink",
         svg: "http://www.w3.org/2000/svg"
-    }
+    };
 
 
     //initialize();
@@ -306,10 +306,9 @@ EditorsInputs = function() {
     self.elementInputs = {
         //'text': ['text', 'transformX', 'transformY', 'fontSize', 'fontFamily'],
         //'textPath': ['text', 'transformX', 'transformY', 'fontSize', 'fontFamily'],
-        'text': ['text'],
-        'textPath': ['text'],
-        'textpath': ['text'],
-        'tspan': ['text']
+        'textPath': ['text', 'fontSize', 'fontFamily', 'fontWeight', 'fontStyle'],
+        'tspan': ['text', 'fontSize', 'fontFamily', 'fontWeight', 'fontStyle'],
+        'text': ['text', 'fontSize', 'fontFamily', 'fontWeight', 'fontStyle']
     };
 
     var fontSizes = {
@@ -368,11 +367,45 @@ EditorsInputs = function() {
     };
     var fontFamilies = {
         '': '默认',
+        "SimHei": "黑体",
+        "SimSun": "宋体",
+        "NSimSun": "新宋体",
+        "FangSong": "仿宋",
+        "KaiTi": "楷体",
+        "FangSong_GB2312": "仿宋_GB2312",
+        "KaiTi_GB2312": "楷体_GB2312",
+        "Microsoft YaHei": "微软雅黑体",
+        "LiSu": "隶书",
+        "YouYuan": "幼圆",
+        "STXihei": "华文细黑",
+        "STKaiti": "华文楷体",
+        "STSong": "华文宋体",
+        "STZhongsong": "华文中宋",
+        "STFangsong": "华文仿宋",
         "Serif":"Serif",
         "Sans-serif":"Sans-serif",
         "Monospace":"Monospace",
         "Cursive":"Cursive",
         "Fantasy":"Fantasy"
+
+    };
+
+    var fontStyles = {
+        'normal': '正常',
+        'italic': '斜体',
+        'oblique': '倾斜'
+    };
+
+    var fontWeights = {
+        '100': '100',
+        '200': '200',
+        '300': '300',
+        '400': '400',
+        '500': '500',
+        '600': '600',
+        '700': '700',
+        '800': '800',
+        '900': '900'
     }
 
     self.x = {
@@ -460,26 +493,64 @@ EditorsInputs = function() {
     self.fontSize = {
         label: '字号',
         init: function(dom) {
-            var value = $(dom).attr('font-size');
-            var $input = $('<select></select>');
-            $.each(fontSizes, function(key, label) {
-                var $option = $('<option value="'+key+'">'+label+'</option>');
-                if(key == $.trim(value)) {
-                    $option.attr('selected', 'selected');
-                }
-                $input.append($option)
-            });
-            return $input;
+            var value = $(dom).css('font-size') || $(dom).attr('font-size');
+            $(dom).css('font-size', '');
+            var $input = $("<input type='text'>");
+            $(dom).attr('font-size', value);
+            return $input.val(value);
         },
         changeCallback: function(dom, value) {
             $(dom).attr('font-size', value);
         }
     };
 
+    self.fontStyle = {
+        label: '文字风格',
+        init: function(dom) {
+            var value = $(dom).css('font-style') || $(dom).attr('font-style');
+            $(dom).css('font-style', '');
+            var $input = $('<select></select>');
+            $.each(fontStyles, function(key, label) {
+                var $option = $('<option value="'+key+'">'+label+'</option>');
+                if(key == $.trim(value)) {
+                    $option.attr('selected', 'selected');
+                }
+                $input.append($option)
+            });
+            $(dom).attr('font-style', value);
+            return $input;
+        },
+        changeCallback: function(dom, value) {
+            $(dom).attr('font-style', value);
+        }
+    };
+
+    self.fontWeight = {
+        label: '字宽',
+        init: function(dom) {
+            var value = $(dom).css('font-weight') || $(dom).attr('font-weight') || 400;
+            $(dom).css('font-weight', '');
+            var $input = $('<select></select>');
+            $.each(fontWeights, function(key, label) {
+                var $option = $('<option value="'+key+'">'+label+'</option>');
+                if(key == $.trim(value)) {
+                    $option.attr('selected', 'selected');
+                }
+                $input.append($option)
+            });
+            $(dom).attr('font-weight', value);
+            return $input;
+        },
+        changeCallback: function(dom, value) {
+            $(dom).attr('font-weight', value);
+        }
+    };
+
     self.fontFamily = {
         label: '字体',
         init: function(dom) {
-            var value = $(dom).attr('font-family');
+            var value = $(dom).css('font-family') || $(dom).attr('font-family');
+            $(dom).css('font-family', '');
             var $input = $('<select></select>');
             $.each(fontFamilies, function(key, label) {
                 var $option = $('<option value="'+key+'">'+label+'</option>');
@@ -488,6 +559,7 @@ EditorsInputs = function() {
                 }
                 $input.append($option)
             });
+            $(dom).attr('font-family', value);
             return $input;
         },
         changeCallback: function(dom, value) {
@@ -542,13 +614,21 @@ SvgEditor = function(dom) {
         $operate.on('click', function() {
            SvgDownload.download(self.$panel.find('svg')[0])
         });
-    }
-
+    };
 
     self.refreshPanel = function() {
         self.$editor.html('');
         self.refreshOperate();
-        $.each(self.$panel.find('svg').find('text, textPath, tspan, textpath'), function(i, dom) {
+        $.each(self.$panel.find('svg').find('textPath'), function(i, dom) {
+            var $dom = $(dom);
+            if(EditorsInputs.elementInputs[$dom[0].tagName] != undefined ) {
+                if($dom.children().length == 0) {
+                    self.rebuildEditor($dom, EditorsInputs.elementInputs[$dom[0].tagName])
+                }
+            }
+        });
+
+        $.each(self.$panel.find('svg').find('tspan, text'), function(i, dom) {
             var $dom = $(dom);
             if(EditorsInputs.elementInputs[$dom[0].tagName] != undefined ) {
                 if($dom.children().length == 0) {
@@ -629,35 +709,3 @@ SvgEditor = function(dom) {
     }
 
 };
-
-window.downloadFile = function(sUrl) {
-
-    //If in Chrome or Safari - download via virtual link click
-    if (window.downloadFile.isChrome || window.downloadFile.isSafari) {
-        //Creating new link node.
-        var link = document.createElement('a');
-        link.href = sUrl;
-
-        if (link.download !== undefined){
-            //Set HTML5 download attribute. This will prevent file from opening if supported.
-            var fileName = sUrl.substring(sUrl.lastIndexOf('/') + 1, sUrl.length);
-            link.download = fileName;
-        }
-
-        //Dispatching click event.
-        if (document.createEvent) {
-            var e = document.createEvent('MouseEvents');
-            e.initEvent('click' ,true ,true);
-            link.dispatchEvent(e);
-            return true;
-        }
-    }
-
-    // Force file download (whether supported by server).
-    var query = '?download';
-
-    window.open(sUrl + query);
-}
-
-window.downloadFile.isChrome = navigator.userAgent.toLowerCase().indexOf('chrome') &gt; -1;
-window.downloadFile.isSafari = navigator.userAgent.toLowerCase().indexOf('safari') &gt; -1;
