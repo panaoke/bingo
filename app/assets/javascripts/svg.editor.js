@@ -387,7 +387,6 @@ EditorsInputs = function() {
         "Monospace":"Monospace",
         "Cursive":"Cursive",
         "Fantasy":"Fantasy"
-
     };
 
     var fontStyles = {
