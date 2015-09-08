@@ -152,7 +152,7 @@ model:
       columns:
         id:
           name: 'id'
-          width: '30'
+          width: '10'
           zh_name: 'id'
           index: 'id'
         name:
@@ -170,8 +170,8 @@ model:
           width: '30'
           zh_name: '尺寸大小'
           index: 'id'
-        category_id:
-          name: 'category_id'
+        category_label:
+          name: 'category_label'
           width: '30'
           zh_name: '品类'
           index: 'id'
@@ -190,6 +190,11 @@ model:
           width: '30'
           zh_name: '描述'
           index: 'id'
+        operate:
+           name: 'operate'
+           width: '30'
+           zh_name: '操作'
+           index: 'updated_at'
     form:
       fields:
         name:
@@ -240,7 +245,7 @@ model:
       columns:
         id:
           name: 'id'
-          width: '30'
+          width: '10'
           zh_name: 'id'
           index: 'id'
         name:
@@ -253,6 +258,11 @@ model:
           width: '30'
           zh_name: '描述'
           index: 'id'
+        operate:
+           name: 'operate'
+           width: '30'
+           zh_name: '操作'
+           index: 'updated_at'
     form:
       fields:
         name:
@@ -278,7 +288,7 @@ model:
       columns:
         id:
           name: 'id'
-          width: '30'
+          width: '10'
           zh_name: 'id'
           index: 'id'
     form:
