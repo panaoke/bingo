@@ -5,6 +5,9 @@ module Admin
 			"/admin/#{model_singularize_name.tableize}"
 		end
 
+		def my
+			"it is my"
+		end
 
 	end
 end

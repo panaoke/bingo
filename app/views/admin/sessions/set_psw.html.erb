@@ -1,0 +1,13 @@
+<%= ace_from({code: 'user', method: 'PUT', html: {action: '/admin/sessions/1/update_psw', class: 'simple_list_form'}}) do |f| %>
+    <%= ace_input({name: "user[psw]", type: :string, label: '密码', required: true}) %>
+    <%= ace_input({name: "user[psw_confirm]", type: :string, label: '确认密码', required: true}) %>
+<% end %>
+
+<%= javascript_include_tag "simple_list/simple_list_form" %>
+
+
+<script>
+    $(function() {
+        $('.simple_list_form').extPlugins();
+    })
+</script>

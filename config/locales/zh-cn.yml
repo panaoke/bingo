@@ -1,0 +1,46 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+zh-cn:
+  app:
+    user_manage: 用户管理
+    user: 用户列表
+    workbnech: 我的工作台
+    template: 模板
+    category: 模板品类
+  action:
+    user_info: 个人信息
+    login: 登录
+    logout: 登出
+    welcome: 欢迎
+    system_is_busy_now: '系统忙, 请稍后重试'
+    select_all: 全部
+    edit: '修改'
+    loading: '加载中...'
+    remember_me: 记住我
+  admin:
+    sessions:
+      login: 登录名
+      password: 密码
+      remember_me: 记住我
+      login_is_not_exists: 登录名不存在
+      password_is_invalid: 密码不正确
+      please_input_login_and_password: 请输入登录名和密码

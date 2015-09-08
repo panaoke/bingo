@@ -1,0 +1,28 @@
+province:
+  name: string
+city:
+  name: string
+  province_id: string
+area:
+  name: string
+  city_id: string
+  province_id: string
+user:
+  name: 			string			# 名称
+  login:			string			# 登录名
+  password:			string			# 密码
+  status:			enum(string)	# 用户状态 {'active' => '激活'， 'unactive' => '未激活'}
+  role:				enum(string)	# 角色, 决定其管理权限 {admin: '超级管理员'}
+template:
+  name: 			string			# 名称
+  image_url: 		string			# 图片地址
+  shape_type:		enum(string)	# {rectangle: '长方', round: '圆', other: '其他'}
+  size_type:		enum(string)	# 尺寸类型{ 40_40: '40x40', '50_50': '50x50' }
+  category_id:		integer			# 品类id
+  active:			boolean			# 是否激活, 激活后可用, default: true
+  price:			decimal			# 价格
+  desc:             text            # 描述
+category:
+  name: 			string			# 名称
+  desc: 			string			# 描述文字
+  detail:			text			# 一段介绍的富文本

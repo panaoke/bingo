@@ -12,6 +12,4 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.event.ue.js
-//= require jquery.udraggable.js
-//= require svg.editor.js
+//= require bootstrap.min.js

@@ -41,9 +41,9 @@ gem 'multi_xml'
 gem 'capistrano', '~> 3.4.0'
 gem 'capistrano-rails', group: :development
 gem 'capistrano-passenger', group: :development
-
-# Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
+# gem 'find_helper',                path: '/Users/apple/projects/gems/ruby2.0/find_helper'
+# gem 'simple_list',                path: '/Users/apple/projects/gems/ruby2.0/simple_list'
+# gem 'ace_skin',                   path: '/Users/apple/projects/gems/ruby2.0/ace_skin'
 
 ['find_helper', 'ace_skin', 'simple_list'].each do |name|
 	gem name, github: "panaoke/#{name}"

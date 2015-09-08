@@ -1,0 +1,28 @@
+---
+province:
+  name: string
+city:
+  name: string
+  province_id: string
+area:
+  name: string
+  city_id: string
+  province_id: string
+user:
+  name: string
+  login: string
+  password: string
+  status: enum(string)
+  role: enum(string)
+template:
+  name: string
+  image_url: string
+  shape_type: enum(string)
+  size_type: enum(string)
+  category_id: integer
+  active: boolean
+  price: decimal
+category:
+  name: string
+  desc: string
+  detail: text

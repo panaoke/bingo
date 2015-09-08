@@ -1,0 +1,11 @@
+default: &default
+  oss:
+    aliyun_access_id: j3g9HXaJCjzVfegz
+    aliyun_access_key: mhw9ncVF8VyhHsV2XT1U6zIUVgpluX
+    aliyun_bucket: 'beauty-dev'
+    aliyun_host: 'http://beauty-dev.oss-cn-hangzhou.aliyuncs.com'
+    aliyun_internal: false
+development:
+  <<: *default
+production:
+  <<: *default

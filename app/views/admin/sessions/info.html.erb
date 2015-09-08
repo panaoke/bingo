@@ -1,0 +1,12 @@
+<%= ace_from({code: 'user', method: 'PUT', html: {action: '/admin/sessions/1', class: 'simple_list_form'}}) do |f| %>
+    <%= ace_input({name: "user[name]", type: :string, label: '昵称', required: true, value: user.name}) %>
+<% end %>
+
+<%= javascript_include_tag "simple_list/simple_list_form" %>
+
+
+<script>
+    $(function() {
+        $('.simple_list_form').extPlugins();
+    })
+</script>

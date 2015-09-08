@@ -1,6 +1,5 @@
 module Admin
 	class ApplicationController < ActionController::Base
-		include ::BaseController
 		helper BaseHelper
 
 		before_action :find_model_class

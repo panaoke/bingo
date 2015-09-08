@@ -1,0 +1,290 @@
+## 全局配置
+default:
+ # 列表每页展现记录数量
+ per_page: 10
+ # 列表页中是否显示记录id
+ is_show_primary_key: true
+ # 格式化日期格式to_json为标准字符串输出, default: false
+ format_time: true
+ # 开启权限管理, default: false
+ open_permission_manage: true
+
+## 导航配置
+link_groups:
+  user_manage:
+    label: workbnech
+    icon: 'icon-th-list'
+    links:
+      user:
+        label: user
+        url: /admin/simple_list/users
+      category:
+        label: category
+        url: /admin/simple_list/categories
+      template:
+        label: template
+        url: /admin/simple_list/templates
+model:
+  user:
+    label: '用户'
+    list:
+      name: '用户列表'
+      desc: ''
+      filter:
+        filterConfig:
+          id:
+            type: 'integer'
+            name: 'ID'
+          login:
+            type: 'text'
+            name: '登录名'
+          name:
+            type: 'text'
+            name: '昵称'
+          status:
+            type: 'choose'
+            name: '状态'
+          role:
+            type: 'choose'
+            name: '角色'
+          created_at:
+            type: 'date'
+            name: '创建时间'
+      columns:
+        id:
+          name: 'id'
+          width: '30'
+          zh_name: 'id'
+          index: 'id'
+        login:
+          name: 'login'
+          index: 'login'
+          width: '60'
+          zh_name: '登录名'
+          desc: ''
+          sort:
+            field: '`users`.`login`'
+        name:
+          name: 'name'
+          index: 'name'
+          width: '60'
+          zh_name: '昵称'
+          desc: ''
+          sort:
+            field: '`users`.`name`'
+        status_label:
+          name: 'status_label'
+          index: 'status_label'
+          width: '60'
+          zh_name: '状态'
+          desc: ''
+          sort:
+            field: '`users`.`status`'
+        created_at:
+          name: 'created_at'
+          index: 'created_at'
+          width: '100'
+          is_sort: ture
+          zh_name: '创建时间'
+          sort:
+            field: '`users`.`name`'
+        updated_at:
+          width: '100'
+          name: 'updated_at'
+          index: 'updated_at'
+          is_sort: ture
+          zh_name: '更新时间'
+          desc: ''
+        operate:
+          name: 'operate'
+          index: 'updated_at'
+          zh_name: '操作'
+          width: 70
+          search: false
+    form:
+      new_fields:
+        login:
+          type: string
+          label: 登录名
+          desc: 登录名需要唯一
+          validation: 'required'
+        name:
+          type: string
+          type: string
+          label: 用户昵称
+          validation: 'required'
+        password:
+          type: string
+          label: 密码
+          desc:
+          validation: 'required'
+        status:
+          type: choose
+          label: 状态
+          required: true
+        role:
+          type: choose
+          label: 角色
+      fields:
+        login:
+          type: string
+          label: 登录名
+          desc: 登录名需要唯一
+          validation: 'required'
+          required: true
+        name:
+          type: string
+          label: 用户昵称
+          validation: 'required'
+          required: true
+        status:
+          type: choose
+          label: 状态
+          required: true
+        role:
+          type: choose
+          label: 角色
+  template:
+    label: 模板管理
+    list:
+      name: 模板列表
+      desc:
+      columns:
+        id:
+          name: 'id'
+          width: '30'
+          zh_name: 'id'
+          index: 'id'
+        name:
+          name: 'name'
+          width: '30'
+          zh_name: '名称'
+          index: 'id'
+        shape_type:
+          name: 'shape_type'
+          width: '30'
+          zh_name: '形状'
+          index: 'id'
+        size_type:
+          name: 'size_type'
+          width: '30'
+          zh_name: '尺寸大小'
+          index: 'id'
+        category_id:
+          name: 'category_id'
+          width: '30'
+          zh_name: '品类'
+          index: 'id'
+        active:
+          name: 'active'
+          width: '30'
+          zh_name: '是否激活'
+          index: 'id'
+        price:
+          name: 'price'
+          width: '30'
+          zh_name: '价格'
+          index: 'id'
+        desc:
+          name: 'desc'
+          width: '30'
+          zh_name: '描述'
+          index: 'id'
+    form:
+      fields:
+        name:
+          type: string
+          label: 名称
+          validation: 'required'
+          required: true
+        shape_type:
+          type: choose
+          label: 形状
+          validation: 'required'
+          required: true
+        size_type:
+          type: choose
+          label: 尺寸大小
+          validation: 'required'
+          required: true
+        category_id:
+          type: choose
+          label: 品类
+          validation: 'required'
+          required: true
+        active:
+          type: boolean
+          label: 是否激活
+          validation: 'required'
+          required: true
+        price:
+          type: float
+          label: 价格
+          validation: 'required'
+          required: true
+        image_url:
+          type: photo
+          label: 图片
+          validation: 'required'
+          required: true
+        desc:
+          type: rich_text
+          label: 描述
+          validation: 'required'
+          required: true
+  category:
+    label: 品类
+    list:
+      name: 品类列表
+      desc:
+      columns:
+        id:
+          name: 'id'
+          width: '30'
+          zh_name: 'id'
+          index: 'id'
+        name:
+          name: 'name'
+          width: '30'
+          zh_name: '名称'
+          index: 'id'
+        desc:
+          name: 'desc'
+          width: '30'
+          zh_name: '描述'
+          index: 'id'
+    form:
+      fields:
+        name:
+          type: string
+          label: 名称
+          validation: 'required'
+          required: true
+        desc:
+          type: text
+          label: 描述
+          validation: 'required'
+          required: true
+        detail:
+          type: rich_text
+          label: 详情
+          validation: 'required'
+          required: true
+  example:
+    label:
+    list:
+      name:
+      desc:
+      columns:
+        id:
+          name: 'id'
+          width: '30'
+          zh_name: 'id'
+          index: 'id'
+    form:
+      fields:
+        name:
+          type: string
+          label: 名称
+          validation: 'required'
+          required: true
