@@ -1,0 +1,54 @@
+<div>
+  <div>
+    名称: <%= @temp.name%>
+  </div>
+  <div>
+    尺寸: <%= @temp.size_type_label%>
+  </div>
+  <div>
+    形状: <%= @temp.shape_type_label%>
+  </div>
+  <div>
+    价格: ￥<%= @temp.price%>
+  </div>
+  <div>
+    <%= raw @temp.desc%>
+  </div>
+</div>
+<div class="svg-hide hide">
+  <%= raw @temp.get_svg.html_safe %>
+</div>
+<div class="my-svg">
+
+</div>
+
+
+<style>
+    img.svg-image {
+        width: 100px;
+        height: 100px;
+    }
+    svg {
+        border: 1px solid #777;
+        width: 300px;
+        height: 200px;
+    }
+    .svg-editor .editor-item {
+        padding: 10px;
+    }
+    .attr-item label {
+        display: inline-block;
+        width: 100px;
+        margin-right: 10px;
+    }
+    .svg-panel,  .svg-editor {
+        width: 50%;
+        float: left;
+    }
+</style>
+<script>
+    $(function() {
+        svg = new SvgEditor('.my-svg');
+        svg.loadDom($('.svg-hide').html())
+    }, jQuery)
+</script>

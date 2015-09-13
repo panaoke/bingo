@@ -13,3 +13,38 @@
  *= require bootstrap.min.css
  *= require bootstrap-theme.min.css
  */
+
+.temp-item {
+    list-style: none;
+    width: 20%;
+    float: left;
+    position: relative;
+}
+.temp-item-inner {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.item-image img {
+    width: 100%;
+}
+ul.temp-list-content {
+    padding: 0;
+    display: table;
+    margin-top: 20px;
+}
+.item-label {
+    text-align: center;
+}
+.temp-list {
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+.header {
+    height: 60px;
+    background: rgb(0, 125, 125);
+}
+.header-content {
+    width: 1170px;
+    margin: 0 auto;
+}

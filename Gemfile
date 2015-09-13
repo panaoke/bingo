@@ -30,6 +30,7 @@ gem 'uuid'
 gem 'rest-client'
 gem 'alipay', '~> 0.7.1'
 gem 'multi_xml'
+gem 'rest-client'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

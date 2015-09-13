@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # get '*path' => 'sessions#index'
 
+  resources :templates
+
 	mount AceSkin::Engine => '/ace_skin'
 	mount SimpleList::Engine => '/simple_list'
 

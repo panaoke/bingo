@@ -1,0 +1,28 @@
+<div class="banner">
+    <img src="http://beauty-dev.oss-cn-hangzhou.aliyuncs.com/other/baner.jpg" width="100%">
+</div>
+<div class="temp-lists">
+    <% Category.all.each do |c|%>
+    <div class="temp-list">
+      <div class="temp-list-title">
+        <%= c.name %>
+      </div>
+      <ul class="temp-list-content">
+        <% c.templates.each do |temp|%>
+            <li class="temp-item">
+               <div class="temp-item-inner">
+                 <div class="item-image">
+                   <a href="/templates/<%= temp.id%>">
+                     <img src="<%= temp.image_url%>" title="<%= temp.name%>">
+                   </a>
+                 </div>
+                 <div class="item-label">
+                   <%= temp.name%>
+                 </div>
+               </div>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+    <% end %>
+</div>

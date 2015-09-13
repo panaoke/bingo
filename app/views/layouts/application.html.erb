@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Bingo</title>
+  <title>印什么 1分钟DIY定制专属印章</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<div class="header">
+  <div class="header-content">
+    <a href="/" class="logo">
+      <img src="http://beauty-dev.oss-cn-hangzhou.aliyuncs.com/other/logo.png">
+    </a>
+  </div>
+</div>
+<div class="container">
+  <%= yield %>
+</div>
+<div class="footer">
+
+</div>
 
 </body>
 </html>

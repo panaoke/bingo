@@ -648,13 +648,16 @@ SvgEditor = function(dom) {
                 type: 'GET',
                 url: a[0].href,
                 success: function(data) {
-                    var $svg = $(data.documentElement);
-                    self.$panel.html("");
-                    self.$panel.append($svg);
-                    self.refreshPanel();
+                    self.loadDom(data.documentElement)
                 }
             });
         }
+    };
+
+    self.loadDom = function(dom) {
+        self.$panel.html("");
+        self.$panel.append($(dom));
+        self.refreshPanel();
     };
 
     self.udraggable = function() {
