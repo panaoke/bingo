@@ -24,6 +24,8 @@ module Bingo
     config.active_record.default_timezone = :local
     config.time_zone = 'Beijing'
     config.i18n.default_locale = 'zh-cn'
+
+    # Compress JavaScripts and CSS
     config.assets.compress = true
 
     # Don't fallback to assets pipeline if a precompiled asset is missed
@@ -32,9 +34,11 @@ module Bingo
     # Enable the asset pipeline
     config.assets.enabled = true
 
-    config.assets.version = '1.0'
+    config.assets.version = '1.1'
 
+    # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
 
     config.assets.precompile += %W{
           application.css
